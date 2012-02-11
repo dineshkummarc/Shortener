@@ -15,8 +15,8 @@ builtins:
 - datastore_admin: on
 
 handlers:
-# Setting up static directories.
-# Favicons and txt files, basically./
+# Favicons and txt files. :/
+
 - url: /apple-touch-icon\.png
   mime_type: image/png
   static_files: static/apple-touch-icon.png
@@ -40,6 +40,11 @@ handlers:
   static_files: static/css/\1
   upload: static/css/(.*\.css)
 
+- url: /less/(.*\.less)
+  mime_type: text/css
+  static_files: static/less/\1
+  upload: static/less/(.*\.less)
+
 - url: /js/(.*\.js)
   mime_type: text/javascript
   static_files: static/js/\1
@@ -50,8 +55,9 @@ handlers:
   static_files: static/\1
   upload: static/(.*\.html)
     
-# All other requests go to app.py
+# All other dynamic requests go to app.py
 # Yippee!
+
 - url: /.*
   script: app.py
 
